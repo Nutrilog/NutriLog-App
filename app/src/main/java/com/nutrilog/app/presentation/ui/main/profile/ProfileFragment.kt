@@ -11,6 +11,7 @@ import com.nutrilog.app.domain.model.ActiveLevel
 import com.nutrilog.app.domain.model.Language
 import com.nutrilog.app.presentation.ui.auth.AuthViewModel
 import com.nutrilog.app.presentation.ui.base.BaseFragment
+import com.nutrilog.app.presentation.ui.base.component.dialog.EditProfileDialogFragment
 import com.nutrilog.app.utils.helpers.gone
 import com.nutrilog.app.utils.helpers.observe
 import com.nutrilog.app.utils.helpers.show
@@ -20,6 +21,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
     private val authViewModel: AuthViewModel by viewModel()
     private val profileViewModel: ProfileViewModel by viewModel()
+    private var defaultValues: EditProfileDialogFragment.DefaultValues =
+        EditProfileDialogFragment.DefaultValues(0.0, 0.0)
 
     private var currentLanguage: Language = Language.ENGLISH
 
@@ -43,9 +46,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
 
     private fun initObserver() {
         observe(profileViewModel.getLanguage(), ::handleLanguageChange)
-        observe(profileViewModel.getActiveLevel(), ::handleActionLevel)
-        observe(profileViewModel.getUserHeight(), ::showHeight)
-        observe(profileViewModel.getUserWeight(), ::showWeight)
+        observe(profileViewModel.getUserData(), ::handleUserData)
     }
 
     private fun initUI() {
@@ -71,7 +72,29 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
                     profileViewModel.saveActiveLevelSetting(level)
                 }
             }
+
+            btnEditProfile.setOnClickListener {
+                EditProfileDialogFragment.display(
+                    childFragmentManager,
+                    defaultValues,
+                    ::onActionSaveProfile,
+                )
+            }
         }
+    }
+
+    private fun onActionSaveProfile(
+        weight: Double,
+        height: Double,
+    ) {
+        profileViewModel.saveUserWeight(weight)
+        profileViewModel.saveUserHeight(height)
+    }
+
+    private fun handleUserData(userData: Triple<ActiveLevel, Double, Double>) {
+        handleActionLevel(userData.first)
+        showHeight(userData.third)
+        showWeight(userData.second)
     }
 
     private fun handleActionLevel(level: ActiveLevel) {
@@ -105,10 +128,12 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
 
     private fun showHeight(height: Double) {
         binding.userHeightTv.text = getString(R.string.label_value_height, height.toString())
+        defaultValues = EditProfileDialogFragment.DefaultValues(defaultValues.weight, height)
     }
 
     private fun showWeight(weight: Double) {
         binding.userWeightTv.text = getString(R.string.label_value_weight, weight.toString())
+        defaultValues = EditProfileDialogFragment.DefaultValues(weight, defaultValues.height)
     }
 
     private fun onSignOutResult(result: ResultState<String>) {

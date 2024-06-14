@@ -1,9 +1,6 @@
 package com.nutrilog.app.presentation.ui.main.home.adapter
 
 import android.content.Context
-import android.text.SpannableString
-import android.text.Spanned
-import android.text.style.RelativeSizeSpan
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -18,15 +15,14 @@ import com.nutrilog.app.utils.helpers.formatNutritionAmount
 import com.nutrilog.app.utils.helpers.getBMR
 import com.nutrilog.app.utils.helpers.getCalorieLimit
 import com.nutrilog.app.utils.helpers.getLimitNutrition
-import timber.log.Timber
 
 class HomeAdapter : RecyclerView.Adapter<HomeAdapter.NutritionDataViewHolder>() {
     private var nutritionDataList: List<Pair<NutritionOption, Double>> = listOf()
     private var userAge: Int = 0
     private var userWeight: Double = 0.0
     private var userHeight: Double = 0.0
-    private lateinit var userGender: String
-    private lateinit var userActiveLevel: ActiveLevel
+    private var userGender: String = "male"
+    private var userActiveLevel: ActiveLevel = ActiveLevel.SEDENTARY
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -58,20 +54,29 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.NutritionDataViewHolder>() 
         age: Int,
         gender: String,
     ) {
+        val isChanged = userAge != age || userGender != gender
         userAge = age
         userGender = gender
+        notifyChanges(isChanged)
     }
 
-    fun setActiveLevel(activeLevel: ActiveLevel) {
+    fun setUserData(
+        activeLevel: ActiveLevel,
+        weight: Double,
+        height: Double,
+    ) {
+        val isChanged =
+            userActiveLevel != activeLevel || userWeight != weight || userHeight != height
         userActiveLevel = activeLevel
-    }
-
-    fun setWeight(weight: Double) {
         userWeight = weight
+        userHeight = height
+        notifyChanges(isChanged)
     }
 
-    fun setHeight(height: Double) {
-        userWeight = height
+    private fun notifyChanges(isChange: Boolean) {
+        if (isChange) {
+            notifyItemRangeChanged(0, nutritionDataList.size)
+        }
     }
 
     inner class NutritionDataViewHolder(
@@ -83,24 +88,26 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.NutritionDataViewHolder>() 
             amount: Double,
         ) {
             with(binding) {
-                nutritionTypeTV.text = when(nutritionOption.label) {
-                    "Calories" -> context.getString(R.string.label_nutrition_calories)
-                    "Protein" -> context.getString(R.string.label_nutrition_protein)
-                    "Fat" -> context.getString(R.string.label_nutrition_fat)
-                    else -> context.getString(R.string.label_nutrition_carbs)
-                }
+                nutritionTypeTV.text =
+                    when (nutritionOption.label) {
+                        "Calories" -> context.getString(R.string.label_nutrition_calories)
+                        "Protein" -> context.getString(R.string.label_nutrition_protein)
+                        "Fat" -> context.getString(R.string.label_nutrition_fat)
+                        else -> context.getString(R.string.label_nutrition_carbs)
+                    }
 
                 val getBMR = getBMR(userAge, userWeight, userHeight, userGender)
                 val getLimitCalorie = getCalorieLimit(getBMR, userActiveLevel)
                 val nutritionLimit = getLimitNutrition(nutritionOption, getLimitCalorie)
                 val nutritionLevel = determineNutritionLevel(amount, nutritionLimit)
 
-                nutritionLevelTV.text = when(nutritionLevel.label) {
-                    "Deficient" -> context.getString(R.string.label_level_deficient)
-                    "Optimal" -> context.getString(R.string.label_level_optimal)
-                    "Close to limit" -> context.getString(R.string.label_level_close)
-                    else -> context.getString(R.string.label_level_over)
-                }
+                nutritionLevelTV.text =
+                    when (nutritionLevel.label) {
+                        "Deficient" -> context.getString(R.string.label_level_deficient)
+                        "Optimal" -> context.getString(R.string.label_level_optimal)
+                        "Close to limit" -> context.getString(R.string.label_level_close)
+                        else -> context.getString(R.string.label_level_over)
+                    }
 
                 totalNutritionTV.text =
                     formatNutritionAmount(context, amount, nutritionOption.label == "Calories")

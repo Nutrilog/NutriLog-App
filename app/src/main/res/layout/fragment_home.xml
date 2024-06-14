@@ -74,6 +74,53 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_alert"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="@dimen/dimen_12dp"
+            app:cardElevation="@dimen/dimen_0dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="8dp"
+            app:cardBackgroundColor="?android:attr/colorBackground"
+            app:layout_constraintBottom_toTopOf="@id/rvNutrients"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/userHeader">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/alertLayout"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/alertIv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dimen_36dp"
+                    android:layout_marginVertical="@dimen/dimen_16dp"
+                    android:src="@drawable/ic_info_fill_24"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginHorizontal="@dimen/dimen_16dp" />
+
+                <TextView
+                    android:id="@+id/labelAlertTv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/dimen_14dp"
+                    style="@style/Text.Body2"
+                    android:lineSpacingExtra="@dimen/dimen_8dp"
+                    app:layout_constraintTop_toTopOf="@id/alertIv"
+                    app:layout_constraintBottom_toBottomOf="@id/alertIv"
+                    app:layout_constraintStart_toEndOf="@id/alertIv"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvNutrients"
             android:layout_width="match_parent"
@@ -85,7 +132,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/userHeader"
+            app:layout_constraintTop_toBottomOf="@id/card_alert"
             app:layout_constraintVertical_bias="0.0"
             tools:listitem="@layout/nutrition_card" />
 

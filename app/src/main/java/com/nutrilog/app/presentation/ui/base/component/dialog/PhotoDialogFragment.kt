@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.FragmentManager
 import com.nutrilog.app.R
 import com.nutrilog.app.databinding.LayoutPhotoDialogBinding
 
@@ -58,5 +59,19 @@ class PhotoDialogFragment(
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        private const val TAG: String = "PhotoDialogFragment"
+
+        fun display(
+            fragmentManager: FragmentManager,
+            onCameraClick: () -> Unit,
+            onGalleryClick: () -> Unit,
+        ): PhotoDialogFragment {
+            val photoDialog = PhotoDialogFragment(onCameraClick, onGalleryClick)
+            photoDialog.show(fragmentManager, TAG)
+            return photoDialog
+        }
     }
 }

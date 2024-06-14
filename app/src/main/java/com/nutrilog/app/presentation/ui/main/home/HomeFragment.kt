@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.nutrilog.app.R
 import com.nutrilog.app.databinding.FragmentHomeBinding
 import com.nutrilog.app.presentation.ui.auth.AuthViewModel
 import com.nutrilog.app.presentation.ui.base.BaseFragment
@@ -49,6 +50,19 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     private fun initObserve() {
         val date = Date()
+        observe(profileViewModel.getUserData()) {
+            homeAdapter.setUserData(
+                it.first,
+                it.second,
+                it.third,
+            )
+
+            showAlert(
+                it.second == 0.0 || it.third == 0.0,
+                getString(R.string.message_height_weight_empty),
+            )
+        }
+
         observe(homeViewModel.calculateNutrients(date)) {
             homeAdapter.setNutritionData(it)
         }
@@ -64,23 +78,17 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 }
             }
         }
+    }
 
-        observe(profileViewModel.getActiveLevel()) {
-            homeAdapter.setActiveLevel(
-                it,
-            )
-        }
-
-        observe(profileViewModel.getUserWeight()) {
-            homeAdapter.setWeight(
-                it,
-            )
-        }
-
-        observe(profileViewModel.getUserHeight()) {
-            homeAdapter.setHeight(
-                it,
-            )
+    private fun showAlert(
+        isShow: Boolean,
+        text: String,
+    ) {
+        binding.apply {
+            alertLayout.apply {
+                visibility = if (isShow) View.VISIBLE else View.GONE
+            }
+            labelAlertTv.text = text
         }
     }
 

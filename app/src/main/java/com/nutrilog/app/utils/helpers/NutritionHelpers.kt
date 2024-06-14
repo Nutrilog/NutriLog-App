@@ -43,7 +43,8 @@ fun formatNutritionAmount(
     amount: Double,
     isCalories: Boolean,
 ): SpannableString {
-    val unit = if (isCalories) "kcal" else "g"
+    val unit =
+        if (isCalories) context.getString(R.string.label_calories) else context.getString(R.string.label_gram)
     val stringId =
         if (isCalories) R.string.label_amount_of_nutrition_calories else R.string.label_amount_of_nutrition
     val formattedAmount = context.getString(stringId, amount.roundToDecimalPlaces(1))
@@ -66,35 +67,48 @@ fun convertListToNutritionLevelList(list: List<Nutrition>): Map<NutritionOption,
     }
 }
 
-fun getBMR(age: Int, weight: Double, height: Double, gender: String): Double {
-    return when(gender) {
+fun getBMR(
+    age: Int,
+    weight: Double,
+    height: Double,
+    gender: String,
+): Double {
+    return when (gender) {
         "male" -> (10.0 * weight) + (6.25 * height) - (5.0 * age.toDouble()) + 5.0
         else -> (10.0 * weight) + (6.25 * height) - (5.0 * age.toDouble()) - 161.0
     }
 }
 
-fun getCalorieLimit(bmr: Double, activeLvl: ActiveLevel): Double {
-    return when(activeLvl.value) {
+fun getCalorieLimit(
+    bmr: Double,
+    activeLvl: ActiveLevel,
+): Double {
+    return when (activeLvl.value) {
         "Active" -> ActivityFactor.ACTIVE.label * bmr
         "Moderately Active" -> ActivityFactor.MODERATE.label * bmr
         else -> ActivityFactor.SEDENTARY.label * bmr
     }
 }
 
-fun getLimitNutrition(nutritionOption: NutritionOption, calories: Double): List<Double> {
+fun getLimitNutrition(
+    nutritionOption: NutritionOption,
+    calories: Double,
+): List<Double> {
     val caloriesMin = calories - 200.0
     val caloriesMax = calories + 200.0
 
-    val percentage = when(nutritionOption.label) {
-        "Carbohydrate" -> 0.50
-        "Protein" -> 0.20
-        else -> 0.30
-    }
+    val percentage =
+        when (nutritionOption.label) {
+            "Carbohydrate" -> 0.50
+            "Protein" -> 0.20
+            else -> 0.30
+        }
 
-    val kcalToGrams = when(nutritionOption.label) {
-        "Fat" -> 9.0
-        else -> 4.0
-    }
+    val kcalToGrams =
+        when (nutritionOption.label) {
+            "Fat" -> 9.0
+            else -> 4.0
+        }
 
     val kcalNutritionMinimal = caloriesMin * percentage
     val gramNutritionMinimal = (kcalNutritionMinimal) / kcalToGrams
@@ -105,16 +119,19 @@ fun getLimitNutrition(nutritionOption: NutritionOption, calories: Double): List<
     val kcalNutritionMaximal = caloriesMax * percentage
     val gramNutritionMaximal = (kcalNutritionMaximal) / kcalToGrams
 
-    return when(nutritionOption.label) {
-        "Calories" -> listOf(
-            caloriesMin,
-            calories,
-            caloriesMax
-        )
-        else -> listOf(
-            gramNutritionMinimal,
-            gramNutritionOptimal,
-            gramNutritionMaximal
-        )
+    return when (nutritionOption.label) {
+        "Calories" ->
+            listOf(
+                caloriesMin,
+                calories,
+                caloriesMax,
+            )
+
+        else ->
+            listOf(
+                gramNutritionMinimal,
+                gramNutritionOptimal,
+                gramNutritionMaximal,
+            )
     }
 }

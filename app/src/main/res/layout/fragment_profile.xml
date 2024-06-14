@@ -48,6 +48,18 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <Button
+                    android:id="@+id/btn_edit_profile"
+                    style="@style/Button.Icon.Circle"
+                    android:layout_width="@dimen/dimen_50dp"
+                    android:layout_height="@dimen/dimen_50dp"
+                    android:elevation="8dp"
+                    android:padding="@dimen/dimen_10dp"
+                    app:icon="@drawable/ic_edit_24"
+                    app:iconSize="@dimen/dimen_24dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
+                    app:layout_constraintEnd_toEndOf="@+id/iv_profile" />
+
                 <TextView
                     android:id="@+id/tv_username"
                     style="@style/Text.H5.Bold"
@@ -208,8 +220,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dimen_36dp"
                     android:layout_marginVertical="@dimen/dimen_16dp"
-                    android:contentDescription="@string/language_content_desc"
-                    android:src="@drawable/ic_activity_24"
+                    android:src="@drawable/ic_ruler_24"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -232,24 +243,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/label_value_height"
-                    app:layout_constraintEnd_toEndOf="@id/editHeightIv"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/labelHeightTv"
                     app:layout_constraintBottom_toBottomOf="@id/labelHeightTv"
-                    app:layout_constraintStart_toEndOf="@id/labelHeightTv"
-                    />
-
-                <ImageView
-                    android:id="@+id/editHeightIv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/dimen_16dp"
-                    android:contentDescription="@string/icon_content_desc"
-                    android:src="@drawable/ic_edit_24"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/userHeightTv"
-                    app:layout_constraintBottom_toBottomOf="@id/userHeightTv"
-                    app:layout_constraintStart_toEndOf="@id/userHeightTv" />
-
+                    app:layout_constraintStart_toEndOf="@id/labelHeightTv" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -267,8 +264,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dimen_36dp"
                     android:layout_marginVertical="@dimen/dimen_16dp"
-                    android:contentDescription="@string/language_content_desc"
-                    android:src="@drawable/ic_activity_24"
+                    android:src="@drawable/ic_scale_24"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -291,24 +287,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/label_value_weight"
-                    app:layout_constraintEnd_toEndOf="@id/editWeightIv"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/labelWeightTv"
                     app:layout_constraintBottom_toBottomOf="@id/labelWeightTv"
                     app:layout_constraintStart_toEndOf="@id/labelWeightTv"
                     />
-
-                <ImageView
-                    android:id="@+id/editWeightIv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/dimen_16dp"
-                    android:contentDescription="@string/icon_content_desc"
-                    android:src="@drawable/ic_edit_24"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/userWeightTv"
-                    app:layout_constraintBottom_toBottomOf="@id/userWeightTv"
-                    app:layout_constraintStart_toEndOf="@id/userWeightTv" />
-
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

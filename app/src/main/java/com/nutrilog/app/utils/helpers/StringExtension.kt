@@ -3,6 +3,8 @@ package com.nutrilog.app.utils.helpers
 import android.util.Patterns
 import com.nutrilog.app.domain.model.Gender
 import com.nutrilog.app.utils.constant.AppConstant
+import kotlin.math.pow
+import kotlin.math.roundToInt
 
 val String.isEmailCorrect: Boolean
     get() = Patterns.EMAIL_ADDRESS.matcher(this).matches()
@@ -21,8 +23,9 @@ fun String.convertGender(): Gender {
     }
 }
 
-fun Double.roundToDecimalPlaces(decimalPlaces: Int): String {
-    return "%.${decimalPlaces}f".format(this).toString()
+fun Double.roundToDecimalPlaces(decimalPlaces: Int): Double {
+    val factor = 10.0.pow(decimalPlaces)
+    return (this * factor).roundToInt() / factor
 }
 
 fun String.capitalizeWords(delimiter: String = " ") =

@@ -233,8 +233,7 @@ class AnalysisActivity : BaseActivity<ActivityAnalysisBinding>() {
     }
 
     private fun showImageDialog() {
-        PhotoDialogFragment(::startCamera, ::startGallery)
-            .show(supportFragmentManager, PhotoDialogFragment::class.java.simpleName)
+        PhotoDialogFragment.display(supportFragmentManager, ::startCamera, ::startGallery)
     }
 
     private val launcherGallery =

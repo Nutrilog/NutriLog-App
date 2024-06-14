@@ -79,8 +79,9 @@
     <!-- NutritionRepository Card -->
     <string name="label_nutrition">Nutrisi</string>
     <string name="label_nutrition_level">Tingkat Nutrisi</string>
+    <string name="label_calories">kkal</string>
     <string name="label_amount_of_nutrition">%s g</string>
-    <string name="label_amount_of_nutrition_calories">%s kcal</string>
+    <string name="label_amount_of_nutrition_calories">%s kkal</string>
 
 
     <!-- Navigation -->
@@ -92,6 +93,8 @@
     <!-- History -->
     <string name="label_select_month">Bulan</string>
     <string name="category_chart_total">Total</string>
+    <string name="chart_title">Bagan</string>
+    <string name="chart_subtitle">Bagan riwayat nutrisi</string>
 
     <!-- Month -->
     <string-array name="Months">
@@ -140,6 +143,11 @@
     <string name="label_level_close">Mendekati batas</string>
     <string name="label_level_over">Sangat tinggi</string>
 
+    <!-- Edit Profile -->
+    <string name="header_edit_profile_title">Edit Profil</string>
+    <string name="hint_weight">Masukkan berat badan</string>
+    <string name="hint_height">Masukkan tinggi badan</string>
+
     <!-- Common -->
     <string name="validation_must_not_empty">Kolom tidak boleh kosong</string>
 
@@ -153,6 +161,7 @@
     <string name="message_snackbar" translatable="false">Ini adalah custom snackbar</string>
     <string name="message_signin_success">Berhasil masuk</string>
     <string name="message_signin_failed">Gagal masuk. Silakan periksa email dan kata sandi Anda lagi.</string>
+    <string name="message_height_weight_empty">Silakan atur berat dan tinggi badan di halaman profil.</string>
 
     <string name="label_month">BULAN</string>
     <string name="label_year">TAHUN</string>

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.nutrilog.app.R
 import com.nutrilog.app.databinding.NutritionCardSquareBinding
 import com.nutrilog.app.domain.model.NutritionOption
 import com.nutrilog.app.utils.helpers.formatNutritionAmount
@@ -54,7 +55,13 @@ class NutritionBottomSheetAdapter :
             amount: Double,
         ) {
             with(binding) {
-                nutritionTypeTV.text = nutritionOption.label
+                nutritionTypeTV.text =
+                    when (nutritionOption.label) {
+                        "Calories" -> context.getString(R.string.label_nutrition_calories)
+                        "Protein" -> context.getString(R.string.label_nutrition_protein)
+                        "Fat" -> context.getString(R.string.label_nutrition_fat)
+                        else -> context.getString(R.string.label_nutrition_carbs)
+                    }
                 totalNutritionTV.text =
                     formatNutritionAmount(context, amount, nutritionOption.label == "Calories")
             }

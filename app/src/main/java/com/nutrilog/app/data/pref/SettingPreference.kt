@@ -50,7 +50,7 @@ class SettingPreference(context: Context) {
 
     fun getHeightUser(): Flow<Double> {
         return dataStore.data.map { preferences ->
-            preferences[heightKey] ?: 170.0
+            preferences[heightKey] ?: 0.0
         }
     }
 
@@ -62,7 +62,7 @@ class SettingPreference(context: Context) {
 
     fun getWeightUser(): Flow<Double> {
         return dataStore.data.map { preferences ->
-            preferences[weightKey] ?: 60.0
+            preferences[weightKey] ?: 0.0
         }
     }
 

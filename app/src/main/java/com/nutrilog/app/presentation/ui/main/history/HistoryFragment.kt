@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartAnimationType
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartModel
@@ -30,6 +29,7 @@ import com.nutrilog.app.utils.helpers.getTimeInMillis
 import com.nutrilog.app.utils.helpers.getTimeToDate
 import com.nutrilog.app.utils.helpers.gone
 import com.nutrilog.app.utils.helpers.observe
+import com.nutrilog.app.utils.helpers.roundToDecimalPlaces
 import com.nutrilog.app.utils.helpers.setMonth
 import com.nutrilog.app.utils.helpers.show
 import com.nutrilog.app.utils.helpers.showSnackBar
@@ -157,19 +157,18 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>() {
         val chartModel =
             AAChartModel()
                 .chartType(AAChartType.Column)
-                .title("Chart")
-                .subtitle("Chart history nutrition")
-                .dataLabelsEnabled(false)
-                .markerRadius(8f)
+                .title(getString(R.string.chart_title))
+                .subtitle(getString(R.string.chart_subtitle))
+                .dataLabelsEnabled(true)
+                .markerRadius(12f)
                 .categories(
                     arrayOf(
-                        ContextCompat.getString(
-                            requireContext(),
+                        getString(
                             R.string.category_chart_total,
                         ),
                     ),
                 )
-                .animationType(AAChartAnimationType.Elastic)
+                .animationType(AAChartAnimationType.EaseInCirc)
                 .series(initSeries.toTypedArray())
 
         binding.chartHistory.aa_drawChartWithChartModel(chartModel)
@@ -179,10 +178,18 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>() {
         val nutritionLevels = convertListToNutritionLevel(data)
         val seriesChart =
             nutritionLevels.map { (option, value) ->
+                val label =
+                    when (option.label) {
+                        "Calories" -> getString(R.string.label_nutrition_calories)
+                        "Protein" -> getString(R.string.label_nutrition_protein)
+                        "Fat" -> getString(R.string.label_nutrition_fat)
+                        else -> getString(R.string.label_nutrition_carbs)
+                    }
+                val valueFormat = value.roundToDecimalPlaces(1)
                 AASeriesElement()
-                    .name(option.label)
+                    .name(label)
                     .step(true)
-                    .data(arrayOf(value))
+                    .data(arrayOf(valueFormat))
             }.toTypedArray()
 
         binding.chartHistory.aa_onlyRefreshTheChartDataWithChartOptionsSeriesArray(
