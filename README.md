@@ -1,14 +1,14 @@
-![GitHub Cards Preview](https://github.com/nizarfadlan/NutriLog-App/blob/main/art/nutrilog-cover.png?raw=true)
+![GitHub Cards Preview](https://github.com/Nutrilog/NutriLog-App/blob/main/art/nutrilog-cover.png?raw=true)
 
-![Build (Android)](https://github.com/nizarfadlan/NutriLog-App/workflows/Android%20CI/badge.svg)
+![Build (Android)](https://github.com/Nutrilog/NutriLog-App/workflows/Android%20CI/badge.svg)
 
-![GitHub stars](https://img.shields.io/github/stars/nizarfadlan/NutriLog-App?style=social)
-![GitHub forks](https://img.shields.io/github/forks/nizarfadlan/NutriLog-App?style=social)
-![GitHub watchers](https://img.shields.io/github/watchers/nizarfadlan/NutriLog-App?style=social)
+![GitHub stars](https://img.shields.io/github/stars/Nutrilog/NutriLog-App?style=social)
+![GitHub forks](https://img.shields.io/github/forks/Nutrilog/NutriLog-App?style=social)
+![GitHub watchers](https://img.shields.io/github/watchers/Nutrilog/NutriLog-App?style=social)
 
 # NutriLog
 
-![NutriLog Logo](https://github.com/nizarfadlan/NutriLog-App/blob/main/art/logo.png?raw=true)
+![NutriLog Logo](https://github.com/Nutrilog/NutriLog-App/blob/main/art/logo.png?raw=true)
 
 A Nutrition Tracking App That Empowers Users to Effortlessly Monitor their Daily Food and Drink Intake, Providing Insights for Healthier Dietary Choices.
 
