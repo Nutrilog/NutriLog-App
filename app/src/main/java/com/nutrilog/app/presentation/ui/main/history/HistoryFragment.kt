@@ -59,6 +59,7 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>() {
         super.onViewCreated(view, savedInstanceState)
 
         initRecyclerView()
+
         initChart()
         initData()
         initObserve()
@@ -159,8 +160,9 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>() {
                 .chartType(AAChartType.Column)
                 .title(getString(R.string.chart_title))
                 .subtitle(getString(R.string.chart_subtitle))
-                .dataLabelsEnabled(true)
-                .markerRadius(12f)
+                .dataLabelsEnabled(false)
+                .borderRadius(8f)
+                .markerRadius(4f)
                 .categories(
                     arrayOf(
                         getString(
@@ -176,7 +178,7 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>() {
 
     private fun setChart(data: List<Nutrition>) {
         val nutritionLevels = convertListToNutritionLevel(data)
-        val seriesChart =
+        val listSeriesElement =
             nutritionLevels.map { (option, value) ->
                 val label =
                     when (option.label) {
@@ -193,7 +195,7 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>() {
             }.toTypedArray()
 
         binding.chartHistory.aa_onlyRefreshTheChartDataWithChartOptionsSeriesArray(
-            seriesChart,
+            listSeriesElement,
             true,
         )
     }

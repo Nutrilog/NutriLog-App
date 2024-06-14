@@ -90,7 +90,7 @@ dependencies {
     implementation(libs.chip.navigation.bar)
     implementation(libs.powerspinner)
     implementation(libs.circleimageview)
-    implementation("com.github.AAChartModel:AAChartCore-Kotlin:7.2.1")
+    implementation(libs.aachartcore.kotlin)
 
     // Kotlin
     implementation(libs.androidx.core.ktx)
@@ -133,10 +133,10 @@ dependencies {
     implementation(libs.androidx.exifinterface)
 
     // ML
-    implementation("org.tensorflow:tensorflow-lite:2.4.0")
-    implementation("org.tensorflow:tensorflow-lite-gpu:2.9.0")
-    implementation("org.tensorflow:tensorflow-lite-metadata:0.1.0")
-    implementation("org.tensorflow:tensorflow-lite-support:0.1.0")
+    implementation(libs.tensorflow.lite)
+    implementation(libs.tensorflow.lite.gpu)
+    implementation(libs.tensorflow.lite.metadata)
+    implementation(libs.tensorflow.lite.support)
 
     // Test
     testImplementation(libs.junit)

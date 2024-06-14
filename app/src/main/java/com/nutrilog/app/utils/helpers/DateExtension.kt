@@ -9,7 +9,7 @@ data class DayInfo(val dayOfWeek: String, val dayOfMonth: Int)
 
 object DateFormatUtil {
     fun getDateFormatForLocale(locale: Locale): String {
-        return if (locale.language == "id") {
+        return if (locale.language == "in") {
             "dd/MM/yyyy"
         } else {
             "MM/dd/yyyy"

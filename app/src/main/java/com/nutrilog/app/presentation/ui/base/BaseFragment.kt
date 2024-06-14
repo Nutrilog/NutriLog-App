@@ -27,7 +27,7 @@ abstract class BaseFragment<viewBinding : ViewBinding> : Fragment() {
         savedInstanceState: Bundle?,
     ) {
         super.onViewCreated(view, savedInstanceState)
-        // TODO: Get locale from shared preferences
+
         locale = Locale.getDefault()
     }
 

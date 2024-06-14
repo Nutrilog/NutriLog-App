@@ -14,6 +14,7 @@ import com.nutrilog.app.domain.model.Language
 import com.nutrilog.app.presentation.ui.main.profile.ProfileViewModel
 import com.nutrilog.app.utils.helpers.observe
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.util.Locale
 
 abstract class BaseActivity<viewBinding : ViewBinding> : AppCompatActivity() {
     protected lateinit var binding: viewBinding
@@ -54,6 +55,7 @@ abstract class BaseActivity<viewBinding : ViewBinding> : AppCompatActivity() {
 
     private fun setLanguage(language: Language) {
         val valueLanguage = language.value
+        Locale.setDefault(Locale(valueLanguage))
         val localeList = LocaleListCompat.forLanguageTags(valueLanguage)
         AppCompatDelegate.setApplicationLocales(localeList)
     }
