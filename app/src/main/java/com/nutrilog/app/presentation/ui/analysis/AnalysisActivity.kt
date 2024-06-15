@@ -112,15 +112,19 @@ class AnalysisActivity : BaseActivity<ActivityAnalysisBinding>() {
     }
 
     private fun uploadAnalysis() {
-        val foodServing = binding.etFoodServing.text.toString().toFloat()
+        val foodServing = binding.etFoodServing.text.toString()
 
         when {
             currentImageUri == null -> binding.root.showSnackBar(getString(R.string.validation_photo_empty))
-            foodServing <= 0.0 ->
+            foodServing.isEmpty() ->
+                binding.etFoodServing.error =
+                    getString(R.string.validation_must_not_empty)
+
+            foodServing.toFloat() <= 0.0 ->
                 binding.etFoodServing.error =
                     getString(R.string.message_zero_food_serving)
             else -> {
-                uploadAnalysisProcess(foodServing)
+                uploadAnalysisProcess(foodServing.toFloat())
             }
         }
     }
