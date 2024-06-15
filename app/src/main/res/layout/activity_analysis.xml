@@ -29,7 +29,7 @@
                 app:layout_constraintHeight_min="350dp"
                 app:layout_constraintHeight_max="450dp"
                 android:layout_margin="16dp"
-                app:layout_constraintBottom_toTopOf="@id/button_add"
+                app:layout_constraintBottom_toTopOf="@id/layout_food_serving"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -75,6 +75,30 @@
 
             </FrameLayout>
 
+            <com.nutrilog.app.presentation.ui.base.component.input.InputLayout
+                android:id="@+id/layout_food_serving"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/label_food_serving"
+                app:placeholderText="@string/hint_food_serving"
+                android:layout_marginHorizontal="@dimen/dimen_20dp"
+                android:layout_marginTop="@dimen/dimen_14dp"
+                app:suffixText="@string/label_gram"
+                app:boxBackgroundColor="?android:attr/colorBackground"
+                app:layout_constraintBottom_toTopOf="@id/button_add"
+                app:layout_constraintTop_toBottomOf="@id/layout_photo"
+                app:layout_constraintEnd_toEndOf="@id/layout_photo"
+                app:layout_constraintStart_toStartOf="@id/layout_photo">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_food_serving"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/Text.Body1"
+                    android:inputType="numberDecimal" />
+
+            </com.nutrilog.app.presentation.ui.base.component.input.InputLayout>
+
             <Button
                 android:id="@+id/button_add"
                 style="@style/Button.Primary"
@@ -83,8 +107,7 @@
                 android:layout_marginHorizontal="@dimen/dimen_18dp"
                 android:layout_marginVertical="@dimen/dimen_16dp"
                 android:text="@string/actions_analysis"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layout_food_serving"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 

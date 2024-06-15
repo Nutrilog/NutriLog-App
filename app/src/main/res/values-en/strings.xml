@@ -44,8 +44,11 @@
     <!-- Analysis -->
     <string name="label_photo">Photo</string>
     <string name="label_change_photo">Change Photo</string>
+    <string name="label_food_serving">Food Serving</string>
+
     <string name="header_analysis_title">Analysis</string>
 
+    <string name="hint_food_serving">Enter weight of food servings</string>
     <string name="hint_photo">Choose your food photo</string>
 
     <string name="validation_photo_empty">Please choose a photo</string>
@@ -55,7 +58,7 @@
     <string name="message_error_analyze">Analyze image failed to initialize. See the error log for details</string>
     <string name="message_error_nutrition">Failed to get nutrition data. Please try again later</string>
     <string name="message_empty_image_warning">Please insert the image file first</string>
-
+    <string name="message_zero_food_serving">Please weight food serving more than 0</string>
 
     <!-- About Us -->
     <string name="header_about_title">About Us</string>

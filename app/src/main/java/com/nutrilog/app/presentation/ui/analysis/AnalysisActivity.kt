@@ -112,15 +112,20 @@ class AnalysisActivity : BaseActivity<ActivityAnalysisBinding>() {
     }
 
     private fun uploadAnalysis() {
+        val foodServing = binding.etFoodServing.text.toString().toFloat()
+
         when {
             currentImageUri == null -> binding.root.showSnackBar(getString(R.string.validation_photo_empty))
+            foodServing <= 0.0 ->
+                binding.etFoodServing.error =
+                    getString(R.string.message_zero_food_serving)
             else -> {
-                uploadAnalysisProcess()
+                uploadAnalysisProcess(foodServing)
             }
         }
     }
 
-    private fun uploadAnalysisProcess() {
+    private fun uploadAnalysisProcess(foodServing: Float) {
         currentImageUri?.let { uri ->
             showLoading(true)
             imageFile = uri.uriToFile(this).reduceFileImage()
@@ -140,7 +145,7 @@ class AnalysisActivity : BaseActivity<ActivityAnalysisBinding>() {
                                         showLoading(true)
                                         val nutrition =
                                             lifecycleScope.async {
-                                                getNutrition(analyze.label)
+                                                getNutrition(analyze.label, foodServing)
                                             }.await()
                                         nutrition?.let { showResult(it) }
                                         showLoading(false)
@@ -157,7 +162,10 @@ class AnalysisActivity : BaseActivity<ActivityAnalysisBinding>() {
         } ?: binding.root.showSnackBar(getString(R.string.message_empty_image_warning))
     }
 
-    private suspend fun getNutrition(foodName: String): ResultNutrition? {
+    private suspend fun getNutrition(
+        foodName: String,
+        foodServing: Float,
+    ): ResultNutrition? {
         return suspendCoroutine { continuation ->
             observe(analysisViewModel.fetchNutritionFood(foodName)) { result ->
                 when (result) {
@@ -168,10 +176,10 @@ class AnalysisActivity : BaseActivity<ActivityAnalysisBinding>() {
                         val dataNutrition =
                             ResultNutrition(
                                 foodName,
-                                carbohydrate = nutritionFood.carbohydrates,
-                                proteins = nutritionFood.protein,
-                                fat = nutritionFood.fat,
-                                calories = nutritionFood.calories,
+                                carbohydrate = (nutritionFood.carbohydrates * foodServing) / 100,
+                                proteins = (nutritionFood.protein * foodServing) / 100,
+                                fat = (nutritionFood.fat * foodServing) / 100,
+                                calories = (nutritionFood.calories * foodServing) / 100,
                             )
                         continuation.resume(dataNutrition)
                     }

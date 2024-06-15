@@ -45,8 +45,11 @@
     <!-- Analysis -->
     <string name="label_photo">Foto</string>
     <string name="label_change_photo">Ubah Foto</string>
+    <string name="label_food_serving">Porsi Makanan</string>
+
     <string name="header_analysis_title">Analisis</string>
 
+    <string name="hint_food_serving">Masukkan berat porsi makanan</string>
     <string name="hint_photo">Pilih foto makanan Anda</string>
 
     <string name="validation_photo_empty">Silakan pilih foto</string>
@@ -56,6 +59,7 @@
     <string name="message_error_analyze">Analisis gambar gagal dimulai. Lihat log error untuk detail</string>
     <string name="message_error_nutrition">Gagal mendapatkan data nutrisi. Silakan coba lagi nanti</string>
     <string name="message_empty_image_warning">Silakan masukkan file gambar terlebih dahulu</string>
+    <string name="message_zero_food_serving">Silakan masukkan berat makanan yang disajikan lebih dari 0</string>
 
 
     <!-- About Us -->
