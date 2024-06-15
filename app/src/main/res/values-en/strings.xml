@@ -44,11 +44,11 @@
     <!-- Analysis -->
     <string name="label_photo">Photo</string>
     <string name="label_change_photo">Change Photo</string>
-    <string name="label_food_serving">Food Serving</string>
+    <string name="label_food_serving">Food Weight</string>
 
     <string name="header_analysis_title">Analysis</string>
 
-    <string name="hint_food_serving">Enter weight of food servings</string>
+    <string name="hint_food_serving">Enter food weight in grams</string>
     <string name="hint_photo">Choose your food photo</string>
 
     <string name="validation_photo_empty">Please choose a photo</string>
