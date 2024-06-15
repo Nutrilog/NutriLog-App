@@ -30,7 +30,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        checkForUpdates()
+        if (!BuildConfig.DEBUG) checkForUpdates()
     }
 
     override fun onViewBindingCreated(savedInstanceState: Bundle?) {
