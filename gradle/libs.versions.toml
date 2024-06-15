@@ -1,6 +1,7 @@
 [versions]
 aachartcoreKotlin = "7.2.1"
 agp = "8.4.1"
+apkupdaterLibrary = "v2.1.0"
 chipNavigationBar = "1.4.0"
 circleimageview = "3.1.0"
 gradleDownloadTask = "4.1.2"
@@ -35,6 +36,7 @@ lifecycleKtx = "2.7.0"
 [libraries]
 aachartcore-kotlin = { module = "com.github.AAChartModel:AAChartCore-Kotlin", version.ref = "aachartcoreKotlin" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+apkupdater-library = { module = "com.github.supersu-man:apkupdater-library", version.ref = "apkupdaterLibrary" }
 chip-navigation-bar = { module = "com.github.ismaeldivita:chip-navigation-bar", version.ref = "chipNavigationBar" }
 circleimageview = { module = "de.hdodenhof:circleimageview", version.ref = "circleimageview" }
 gradle-download-task = { module = "de.undercouch:gradle-download-task", version.ref = "gradleDownloadTask" }

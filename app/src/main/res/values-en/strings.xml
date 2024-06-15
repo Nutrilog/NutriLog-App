@@ -175,6 +175,9 @@
     <string name="label_empty_2">You\'ll see it here</string>
     <string name="label_action_level">Action Level</string>
 
+    <string name="label_update_app">New Update Found</string>
+    <string name="label_download">Download</string>
+
     <!-- Bottom Sheet -->
     <string name="label_food_name">Food Name</string>
     <string name="label_date">Date</string>

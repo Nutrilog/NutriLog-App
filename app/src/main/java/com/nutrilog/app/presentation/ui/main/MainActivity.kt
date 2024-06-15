@@ -5,12 +5,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import com.google.android.material.snackbar.Snackbar
+import com.nutrilog.app.BuildConfig
 import com.nutrilog.app.R
 import com.nutrilog.app.databinding.ActivityMainBinding
 import com.nutrilog.app.presentation.ui.analysis.AnalysisActivity
 import com.nutrilog.app.presentation.ui.auth.AuthViewModel
 import com.nutrilog.app.presentation.ui.base.BaseActivity
 import com.nutrilog.app.presentation.ui.welcome.WelcomeActivity
+import com.supersuman.apkupdater.ApkUpdater
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
@@ -20,6 +26,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     override val bindingInflater: (LayoutInflater) -> ActivityMainBinding =
         ActivityMainBinding::inflate
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        checkForUpdates()
+    }
 
     override fun onViewBindingCreated(savedInstanceState: Bundle?) {
         super.onViewBindingCreated(savedInstanceState)
@@ -75,4 +87,19 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         startActivity(Intent(this, WelcomeActivity::class.java))
         finish()
     }
+
+    private fun checkForUpdates() =
+        CoroutineScope(Dispatchers.IO).launch {
+            val updater = ApkUpdater(this@MainActivity, BuildConfig.REPO_URL)
+            updater.threeNumbers = true
+            if (updater.isNewUpdateAvailable() == true) {
+                Snackbar.make(
+                    binding.root,
+                    getString(R.string.label_update_app),
+                    Snackbar.LENGTH_INDEFINITE,
+                ).setAction(getString(R.string.label_download)) {
+                    CoroutineScope(Dispatchers.IO).launch { updater.requestDownload() }
+                }.show()
+            }
+        }
 }

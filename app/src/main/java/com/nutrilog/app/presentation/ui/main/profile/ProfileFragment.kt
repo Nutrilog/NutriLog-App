@@ -73,14 +73,22 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
                 }
             }
 
-            btnEditProfile.setOnClickListener {
-                EditProfileDialogFragment.display(
-                    childFragmentManager,
-                    defaultValues,
-                    ::onActionSaveProfile,
-                )
+            editWeightIv.setOnClickListener {
+                showEditProfileDialog()
+            }
+
+            editHeightIv.setOnClickListener {
+                showEditProfileDialog()
             }
         }
+    }
+
+    private fun showEditProfileDialog() {
+        EditProfileDialogFragment.display(
+            childFragmentManager,
+            defaultValues,
+            ::onActionSaveProfile,
+        )
     }
 
     private fun onActionSaveProfile(

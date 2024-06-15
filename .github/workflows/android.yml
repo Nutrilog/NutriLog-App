@@ -100,22 +100,22 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
 
-      - name: Build APK
+      - name: Build APK Debug
         run: bash ./gradlew assembleDebug --stacktrace
 
-      - name: Move Signed APK
+      - name: Move APK Debug
         run: mv app/build/outputs/apk/debug/app-debug.apk app/build/outputs/apk/debug/${{ env.OUTPUT_NAME_DEBUG }}.apk
 
-      - name: Upload APK
+      - name: Upload APK Debug
         uses: actions/upload-artifact@v3
         with:
           name: ${{ env.OUTPUT_NAME_DEBUG }}
           path: app/build/outputs/apk/debug/${{ env.OUTPUT_NAME_DEBUG }}.apk
 
-      - name: Build APK
+      - name: Build APK Release
         run: bash ./gradlew assembleRelease --stacktrace
 
-      - name: Sign APK
+      - name: Sign APK Release
         uses: r0adkll/sign-android-release@v1
         id: sign_app_apk
         with:
@@ -127,19 +127,19 @@ jobs:
         env:
           BUILD_TOOLS_VERSION: ${{ env.BUILD_TOOLS_VERSION }}
 
-      - name: Move Signed APK
+      - name: Move Signed APK Release
         run: mv ${{steps.sign_app_apk.outputs.signedReleaseFile}} app/build/outputs/apk/release/${{ env.OUTPUT_NAME_RELEASE }}.apk
 
-      - name: Upload APK
+      - name: Upload APK Release
         uses: actions/upload-artifact@v3
         with:
           name: ${{ env.OUTPUT_NAME_RELEASE }}
           path: app/build/outputs/apk/release/${{ env.OUTPUT_NAME_RELEASE }}.apk
 
-      - name: Build release AAB
+      - name: Build release AAB Release
         run: bash ./gradlew bundleRelease --stacktrace
 
-      - name: Sign Bundle
+      - name: Sign Bundle Release
         uses: r0adkll/sign-android-release@v1
         id: sign_app_bundle
         with:
@@ -151,10 +151,10 @@ jobs:
         env:
           BUILD_TOOLS_VERSION: ${{ env.BUILD_TOOLS_VERSION }}
 
-      - name: Move Signed Bundle
+      - name: Move Signed Bundle Release
         run: mv ${{steps.sign_app_bundle.outputs.signedReleaseFile}} app/build/outputs/bundle/release/${{ env.OUTPUT_NAME_RELEASE }}.aab
 
-      - name: Upload Signed AAB
+      - name: Upload Signed AAB Release
         uses: actions/upload-artifact@v3
         with:
           name: ${{ env.OUTPUT_NAME_RELEASE }}

@@ -178,6 +178,9 @@
     <string name="label_empty_2">Setelah anda menambahkan data</string>
     <string name="label_action_level">Tingkat keaktifan</string>
 
+    <string name="label_update_app">Pembaruan Baru Ditemukan</string>
+    <string name="label_download">Unduh</string>
+
     <!-- Bottom Sheet -->
     <string name="label_food_name">Nama Makanan</string>
     <string name="label_date">Tanggal</string>

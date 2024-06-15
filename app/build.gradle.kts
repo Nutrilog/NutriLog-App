@@ -21,6 +21,11 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField("String", "API_BASE_URL", "\"https://capstone-ijhyluyd4q-et.a.run.app/\"")
+        buildConfigField(
+            "String",
+            "REPO_URL",
+            "\"https://github.com/Nutrilog/NutriLog-App/releases/latest\"",
+        )
     }
 
     tasks.register("printVersionName") {
@@ -137,6 +142,9 @@ dependencies {
     implementation(libs.tensorflow.lite.gpu)
     implementation(libs.tensorflow.lite.metadata)
     implementation(libs.tensorflow.lite.support)
+
+    // Updater
+    implementation(libs.apkupdater.library)
 
     // Test
     testImplementation(libs.junit)
