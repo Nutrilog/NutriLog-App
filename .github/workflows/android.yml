@@ -197,4 +197,3 @@ jobs:
           files: |
             app/build/outputs/bundle/release/${{ env.OUTPUT_NAME_RELEASE }}.aab
             app/build/outputs/apk/release/${{ env.OUTPUT_NAME_RELEASE }}.apk
-            app/build/outputs/apk/debug/${{ env.OUTPUT_NAME_DEBUG }}.apk
