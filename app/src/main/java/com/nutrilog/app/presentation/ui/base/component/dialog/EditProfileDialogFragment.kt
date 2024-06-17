@@ -67,9 +67,24 @@ class EditProfileDialogFragment(
                 setOnMenuItemClickListener {
                     when (it.itemId) {
                         R.id.action_save -> {
-                            val weight = etWeight.text.toString().toDouble()
-                            val height = etHeight.text.toString().toDouble()
-                            onEditProfile(weight, height)
+                            val weight = etWeight.text.toString()
+                            val height = etHeight.text.toString()
+
+                            when {
+                                weight.isEmpty() -> {
+                                    etWeight.error = getString(R.string.validation_must_not_empty)
+                                    return@setOnMenuItemClickListener true
+                                }
+
+                                height.isEmpty() -> {
+                                    etHeight.error = getString(R.string.validation_must_not_empty)
+                                    return@setOnMenuItemClickListener true
+                                }
+
+                                else -> {
+                                    onEditProfile(weight.toDouble(), height.toDouble())
+                                }
+                            }
                         }
                     }
                     dismiss()

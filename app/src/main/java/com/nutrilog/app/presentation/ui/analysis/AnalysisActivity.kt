@@ -119,7 +119,6 @@ class AnalysisActivity : BaseActivity<ActivityAnalysisBinding>() {
             foodServing.isEmpty() ->
                 binding.etFoodServing.error =
                     getString(R.string.validation_must_not_empty)
-
             foodServing.toFloat() <= 0.0 ->
                 binding.etFoodServing.error =
                     getString(R.string.message_zero_food_serving)
