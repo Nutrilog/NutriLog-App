@@ -180,6 +180,8 @@
     <string name="label_download">Download</string>
     <string name="label_version">Version %s</string>
 
+    <string name="message_connection_internet">No internet connection</string>
+
     <!-- Bottom Sheet -->
     <string name="label_food_name">Food Name</string>
     <string name="label_date">Date</string>
