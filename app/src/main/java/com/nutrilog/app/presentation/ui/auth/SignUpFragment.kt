@@ -9,11 +9,14 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointBackward
 import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.android.material.snackbar.BaseTransientBottomBar
+import com.google.android.material.snackbar.Snackbar
 import com.nutrilog.app.R
 import com.nutrilog.app.databinding.FragmentSignUpBinding
 import com.nutrilog.app.domain.common.ResultState
 import com.nutrilog.app.domain.model.Gender
 import com.nutrilog.app.presentation.ui.base.BaseFragment
+import com.nutrilog.app.presentation.ui.base.component.snackbar.CustomSnackbar
 import com.nutrilog.app.utils.constant.AppConstant.PASSWORD_LENGTH
 import com.nutrilog.app.utils.helpers.convertDateLocaleToString
 import com.nutrilog.app.utils.helpers.convertStringLocaleToDate
@@ -169,8 +172,21 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>() {
 
             is ResultState.Success -> {
                 showLoading(false)
-                binding.root.showSnackBar(result.data)
-                backSignIn()
+                binding.root.showSnackBar(
+                    result.data,
+                    Snackbar.LENGTH_SHORT,
+                ) {
+                    addCallback(
+                        object : BaseTransientBottomBar.BaseCallback<CustomSnackbar>() {
+                            override fun onDismissed(
+                                transientBottomBar: CustomSnackbar?,
+                                event: Int,
+                            ) {
+                                backSignIn()
+                            }
+                        },
+                    )
+                }
             }
 
             is ResultState.Error -> {

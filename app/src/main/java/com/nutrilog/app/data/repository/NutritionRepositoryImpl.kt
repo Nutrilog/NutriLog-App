@@ -50,4 +50,6 @@ class NutritionRepositoryImpl(
         dataSource.calculateNutritionByDate(date).flowOn(
             Dispatchers.IO,
         )
+
+    override suspend fun clearDataLocalUser(userId: String) = dataSource.clearDataLocalUser(userId)
 }

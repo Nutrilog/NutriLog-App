@@ -19,4 +19,6 @@ interface NutritionDataSource {
     suspend fun saveNutrition(request: SaveNutritionRequest): Flow<ResultState<String>>
 
     fun calculateNutritionByDate(date: Date): Flow<Map<NutritionOption, Double>>
+
+    suspend fun clearDataLocalUser(userId: String)
 }

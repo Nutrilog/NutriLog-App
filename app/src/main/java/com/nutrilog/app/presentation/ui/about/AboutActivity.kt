@@ -2,6 +2,7 @@ package com.nutrilog.app.presentation.ui.about
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import com.nutrilog.app.BuildConfig
 import com.nutrilog.app.R
 import com.nutrilog.app.databinding.ActivityAboutBinding
 import com.nutrilog.app.domain.model.TeamMember
@@ -17,29 +18,36 @@ class AboutActivity : BaseActivity<ActivityAboutBinding>() {
 
         initToolbar()
         initAction()
+        initUI()
+    }
+
+    private fun initUI() {
+        binding.apply {
+            versionLabel.text = getString(R.string.label_version, BuildConfig.VERSION_NAME)
+        }
     }
 
     private fun initAction() {
         binding.apply {
-            authorPhotoOne.setOnClickListener{
+            authorPhotoOne.setOnClickListener {
                 showDetail(TeamMember.RAFI.data)
             }
-            authorPhotoTwo.setOnClickListener{
+            authorPhotoTwo.setOnClickListener {
                 showDetail(TeamMember.ISRAK.data)
             }
-            authorPhotoThree.setOnClickListener{
+            authorPhotoThree.setOnClickListener {
                 showDetail(TeamMember.GISELLA.data)
             }
-            authorPhotoFour.setOnClickListener{
+            authorPhotoFour.setOnClickListener {
                 showDetail(TeamMember.FAUZAN.data)
             }
-            authorPhotoFive.setOnClickListener{
+            authorPhotoFive.setOnClickListener {
                 showDetail(TeamMember.BAGJA.data)
             }
-            authorPhotoSix.setOnClickListener{
+            authorPhotoSix.setOnClickListener {
                 showDetail(TeamMember.NIZAR.data)
             }
-            authorPhotoSeven.setOnClickListener{
+            authorPhotoSeven.setOnClickListener {
                 showDetail(TeamMember.GUNTUR.data)
             }
         }
@@ -58,6 +66,4 @@ class AboutActivity : BaseActivity<ActivityAboutBinding>() {
         val bottomSheet = TeamMemberBottomSheet.newInstance(data)
         bottomSheet.show(supportFragmentManager, TeamMemberBottomSheet.TAG)
     }
-
-
 }

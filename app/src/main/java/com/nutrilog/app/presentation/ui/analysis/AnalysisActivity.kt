@@ -77,7 +77,7 @@ class AnalysisActivity : BaseActivity<ActivityAnalysisBinding>() {
     }
 
     private fun initObservers() {
-        observe(authViewModel.getSession()) {
+        observe(authViewModel.user) {
             user = it
         }
     }

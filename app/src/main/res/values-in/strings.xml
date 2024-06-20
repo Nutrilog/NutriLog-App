@@ -181,6 +181,7 @@
 
     <string name="label_update_app">Pembaruan Baru Ditemukan</string>
     <string name="label_download">Unduh</string>
+    <string name="label_version">Versi %s</string>
 
     <!-- Bottom Sheet -->
     <string name="label_food_name">Nama Makanan</string>

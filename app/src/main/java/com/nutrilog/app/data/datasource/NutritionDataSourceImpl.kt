@@ -95,6 +95,18 @@ class NutritionDataSourceImpl(
     override fun calculateNutritionByDate(date: Date): Flow<Map<NutritionOption, Double>> =
         flow {
             val list = database.getNutritionDao().getNutritionByDate(date)
+
             emit(convertListToNutritionLevel(list))
+
+            val response = service.getNutrients(date.convertDateToString())
+
+            if (response.status === StatusResponse.SUCCESS) {
+                database.getNutritionDao().insertAllNutrition(response.data)
+                emit(convertListToNutritionLevel(response.data))
+            }
         }
+
+    override suspend fun clearDataLocalUser(userId: String) {
+        database.getNutritionDao().deleteByUserId(userId)
+    }
 }

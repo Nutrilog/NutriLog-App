@@ -26,4 +26,7 @@ interface NutritionDao {
 
     @Query("DELETE FROM nutrition WHERE created_at = :date")
     suspend fun deleteByDate(date: Date)
+
+    @Query("DELETE FROM nutrition WHERE user_id = :userId")
+    suspend fun deleteByUserId(userId: String)
 }

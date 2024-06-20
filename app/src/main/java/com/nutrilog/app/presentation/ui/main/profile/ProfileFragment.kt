@@ -9,6 +9,7 @@ import com.nutrilog.app.databinding.FragmentProfileBinding
 import com.nutrilog.app.domain.common.ResultState
 import com.nutrilog.app.domain.model.ActiveLevel
 import com.nutrilog.app.domain.model.Language
+import com.nutrilog.app.domain.model.User
 import com.nutrilog.app.presentation.ui.auth.AuthViewModel
 import com.nutrilog.app.presentation.ui.base.BaseFragment
 import com.nutrilog.app.presentation.ui.base.component.dialog.EditProfileDialogFragment
@@ -23,6 +24,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
     private val profileViewModel: ProfileViewModel by viewModel()
     private var defaultValues: EditProfileDialogFragment.DefaultValues =
         EditProfileDialogFragment.DefaultValues(0.0, 0.0)
+    private var dataUser: User? = null
 
     private var currentLanguage: Language = Language.ENGLISH
 
@@ -35,9 +37,10 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
     ) {
         super.onViewCreated(view, savedInstanceState)
 
-        authViewModel.getSession().observe(viewLifecycleOwner) {
+        observe(authViewModel.user) {
             binding.tvUsername.text = it.name
             binding.tvEmail.text = it.email
+            dataUser = it
         }
 
         initObserver()
@@ -58,7 +61,9 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
             }
 
             logoutSection.setOnClickListener {
-                observe(authViewModel.signOut, ::onSignOutResult)
+                dataUser?.let {
+                    observe(authViewModel.signOut(it.id), ::onSignOutResult)
+                }
             }
 
             selectActionLevel.setOnSpinnerItemSelectedListener<String> { oldIndex, _, newIndex, _ ->

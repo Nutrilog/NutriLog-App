@@ -48,8 +48,42 @@ jobs:
           VERSION_NAME=$(${{github.workspace}}/gradlew -q printVersionName)
           echo "version_name=${VERSION_NAME}" >> $GITHUB_OUTPUT
 
-  build-and-release:
+  lint:
     needs: [ setup ]
+    name: Perform Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Restore Gradle cache
+        uses: actions/cache@v3
+        with:
+          path: ${{ env.GRADLE_CACHE_PATHS }}
+          key: ${{ needs.setup.outputs.gradle_cache_key || runner.os }}-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}-${{ hashFiles('**/buildSrc/**/*.kt') }}
+
+      - name: Set Up JDK ${{ env.JAVA_VERSION }}
+        uses: actions/setup-java@v3
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: ${{ env.JAVA_DIST }}
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Build with Gradle
+        run: ./gradlew build
+
+      - name: Run lint
+        run: ./gradlew lintDebug
+
+      - name: Upload html test report
+        uses: actions/upload-artifact@v3
+        with:
+          name: lint.html
+          path: app/build/reports/lint-results-debug.html
+
+  build-and-release:
+    needs: [ lint, setup ]
     name: Build Release signed APK and Bundle
     runs-on: ubuntu-latest
     steps:
@@ -81,18 +115,6 @@ jobs:
           echo "RELEASE_NAME=${RELEASE_MESSAGE}" >> $GITHUB_ENV
           echo "OUTPUT_NAME_RELEASE=${OUTPUT_NAME_RELEASE}" >> $GITHUB_ENV
           echo "OUTPUT_NAME_DEBUG=${OUTPUT_NAME_DEBUG}" >> $GITHUB_ENV
-
-      - name: Download Models
-        run: ./gradlew downloadModelFile
-
-      - name: Run lint
-        run: ./gradlew lintDebug
-
-      - name: Upload html test report
-        uses: actions/upload-artifact@v3
-        with:
-          name: lint.html
-          path: app/build/reports/lint-results-debug.html
 
       - name: Run gradle tests
         run: ./gradlew test

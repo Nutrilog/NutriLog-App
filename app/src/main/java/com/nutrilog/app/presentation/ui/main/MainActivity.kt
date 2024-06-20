@@ -13,6 +13,7 @@ import com.nutrilog.app.presentation.ui.analysis.AnalysisActivity
 import com.nutrilog.app.presentation.ui.auth.AuthViewModel
 import com.nutrilog.app.presentation.ui.base.BaseActivity
 import com.nutrilog.app.presentation.ui.welcome.WelcomeActivity
+import com.nutrilog.app.utils.helpers.observe
 import com.supersuman.apkupdater.ApkUpdater
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -76,7 +77,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     override fun onStart() {
         super.onStart()
 
-        authViewModel.getSession().observe(this) {
+        observe(authViewModel.user) {
             if (it.id === "" || it === null) {
                 moveToWelcome()
             }

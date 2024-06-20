@@ -32,7 +32,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         savedInstanceState: Bundle?,
     ) {
         super.onViewCreated(view, savedInstanceState)
-        authViewModel.getSession().observe(viewLifecycleOwner) {
+        authViewModel.user.observe(viewLifecycleOwner) {
             binding.tvName.text = it.name
         }
 
@@ -67,7 +67,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             homeAdapter.setNutritionData(it)
         }
 
-        observe(authViewModel.getSession()) { user ->
+        observe(authViewModel.user) { user ->
             user.dateOfBirth.takeIf { it != "" }?.let {
                 val dateStringToDate = user.dateOfBirth.convertStringToDate()
                 dateStringToDate.takeIf { it != null }?.let { dateOfBirth ->

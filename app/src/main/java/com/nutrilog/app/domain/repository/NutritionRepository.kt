@@ -23,4 +23,6 @@ interface NutritionRepository {
     ): Flow<ResultState<String>>
 
     fun calculateNutritionByDate(date: Date): Flow<Map<NutritionOption, Double>>
+
+    suspend fun clearDataLocalUser(userId: String)
 }
