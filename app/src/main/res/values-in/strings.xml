@@ -69,6 +69,7 @@
 
     <string name="label_made_by">Dibuat oleh Tim Produk Capstone Bangkit</string>
     <string name="label_nickname">Nama Panggilan</string>
+    <string name="label_university">Universistas</string>
 
     <string name="text_about_us_description">Lebih dari sekadar pencatatan makanan, NutriLog dapat membuka pemahaman yang lebih dalam tentang nutrisi Anda. Aplikasi kami memanfaatkan pembelajaran mesin yang canggih untuk menganalisis asupan harian Anda, serta memberikan wawasan untuk membuat pilihan yang tepat tentang kesehatan Anda.</string>
 

@@ -68,6 +68,7 @@
 
     <string name="label_made_by">Made by Bangkit Product Capstone Team</string>
     <string name="label_nickname">Nickname</string>
+    <string name="label_university">University</string>
 
     <string name="text_about_us_description">Go beyond basic food logging and unlock a deeper understanding of your nutrition with NutriLog. Our app leverages cutting-edge machine learning to analyze your daily intake and providing personalized insights that empower you to make informed choices about your health.</string>
 

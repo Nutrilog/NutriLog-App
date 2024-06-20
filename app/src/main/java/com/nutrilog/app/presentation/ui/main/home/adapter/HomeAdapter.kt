@@ -121,10 +121,11 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.NutritionDataViewHolder>() 
             limit: List<Double>,
         ): NutritionLevel {
             return when {
-                amount < limit[0] -> NutritionLevel.DEFICIENT
-                amount > limit[1] -> NutritionLevel.CLOSE
+                amount < limit[0] || amount == 0.0 -> NutritionLevel.DEFICIENT
                 amount >= limit[0] && amount <= limit[1] -> NutritionLevel.OPTIMAL
-                else -> NutritionLevel.OVER
+                amount > limit[1] && amount <= limit[2] -> NutritionLevel.CLOSE
+                amount > limit[2] -> NutritionLevel.OVER
+                else -> NutritionLevel.DEFICIENT
             }
         }
 
