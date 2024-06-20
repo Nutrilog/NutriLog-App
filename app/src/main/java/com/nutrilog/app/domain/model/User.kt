@@ -50,8 +50,8 @@ enum class TeamMember(val data: List<String>) {
         listOf(
             "Rafi Athallah Kurniawan",
             "Universitas Brawijaya",
-            "https://www.instagram.com/username",
-            "https://github.com/username",
+            "https://www.instagram.com/rafiathallah_",
+            "https://github.com/rafthall",
             "https://www.linkedin.com/in/rafi-athallah-kurniawan-b766b82a1/"
         )
     ),
