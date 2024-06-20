@@ -183,6 +183,8 @@
     <string name="label_download">Unduh</string>
     <string name="label_version">Versi %s</string>
 
+    <string name="message_connection_internet">Tidak ada koneksi internet</string>
+
     <!-- Bottom Sheet -->
     <string name="label_food_name">Nama Makanan</string>
     <string name="label_date">Tanggal</string>

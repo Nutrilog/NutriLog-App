@@ -1,6 +1,8 @@
 package com.nutrilog.app.presentation.ui.main
 
 import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.navigation.NavController
@@ -14,11 +16,13 @@ import com.nutrilog.app.presentation.ui.auth.AuthViewModel
 import com.nutrilog.app.presentation.ui.base.BaseActivity
 import com.nutrilog.app.presentation.ui.welcome.WelcomeActivity
 import com.nutrilog.app.utils.helpers.observe
+import com.nutrilog.app.utils.helpers.showSnackBar
 import com.supersuman.apkupdater.ApkUpdater
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import timber.log.Timber
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
     private val authViewModel: AuthViewModel by viewModel()
@@ -31,13 +35,17 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if (!BuildConfig.DEBUG) checkForUpdates()
+        if (!BuildConfig.DEBUG && isInternetConnection()) checkForUpdates()
     }
 
     override fun onViewBindingCreated(savedInstanceState: Bundle?) {
         super.onViewBindingCreated(savedInstanceState)
 
         initBottomNavigation()
+
+        if (!isInternetConnection()) {
+            binding.root.showSnackBar(getString(R.string.message_connection_internet))
+        }
     }
 
     private fun initBottomNavigation() {
@@ -103,4 +111,26 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 }.show()
             }
         }
+
+    private fun isInternetConnection(): Boolean {
+        val connectivityManager = getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
+        if (connectivityManager != null) {
+            val capabilities =
+                connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
+            if (capabilities != null) {
+                if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
+                    Timber.tag("Internet").i("NetworkCapabilities.TRANSPORT_CELLULAR")
+                    return true
+                } else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
+                    Timber.tag("Internet").i("NetworkCapabilities.TRANSPORT_WIFI")
+                    return true
+                } else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)) {
+                    Timber.tag("Internet").i("NetworkCapabilities.TRANSPORT_ETHERNET")
+                    return true
+                }
+            }
+        }
+
+        return false
+    }
 }

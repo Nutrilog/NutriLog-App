@@ -98,11 +98,15 @@ class NutritionDataSourceImpl(
 
             emit(convertListToNutritionLevel(list))
 
-            val response = service.getNutrients(date.convertDateToString())
+            try {
+                val response = service.getNutrients(date.convertDateToString())
 
-            if (response.status === StatusResponse.SUCCESS) {
-                database.getNutritionDao().insertAllNutrition(response.data)
-                emit(convertListToNutritionLevel(response.data))
+                if (response.status === StatusResponse.SUCCESS) {
+                    database.getNutritionDao().insertAllNutrition(response.data)
+                    emit(convertListToNutritionLevel(response.data))
+                }
+            } catch (e: Exception) {
+                emit(convertListToNutritionLevel(list))
             }
         }
 
