@@ -117,7 +117,7 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>() {
                     date
                 }
             listDatesAdapter.updateActiveDay(dateNow)
-            dateMilliseconds = getTimeInMillis(dateNow, month, year)
+            dateMilliseconds = getTimeInMillis(dateNow + 1, month, year)
             smoothScrollToActiveItem(dateNow - 1)
 
             val selectedDate = getTimeToDate(dateNow, month, year)
