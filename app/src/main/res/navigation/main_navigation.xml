@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.nutrilog.app.presentation.ui.main.home.HomeFragment"
+        android:name="com.nutrilog.app.ui.screen.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -26,17 +26,17 @@
     </fragment>
     <fragment
         android:id="@+id/historyFragment"
-        android:name="com.nutrilog.app.presentation.ui.main.history.HistoryFragment"
+        android:name="com.nutrilog.app.ui.screen.history.HistoryFragment"
         android:label="fragment_history"
         tools:layout="@layout/fragment_history" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.nutrilog.app.presentation.ui.main.profile.ProfileFragment"
+        android:name="com.nutrilog.app.ui.screen.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
     <activity
         android:id="@+id/aboutActivity"
-        android:name="com.nutrilog.app.presentation.ui.about.AboutActivity"
+        android:name="com.nutrilog.app.ui.screen.about.AboutActivity"
         android:label="activity_about"
         tools:layout="@layout/activity_about" />
 </navigation>

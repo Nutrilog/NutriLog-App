@@ -4,8 +4,6 @@ import android.Manifest
 object AppConstant {
     const val PREFS_SETTINGS = "setting.pref"
     const val PREFS_SESSIONS = "session.pref"
-    const val MULTIPART_FILE_NAME = "photo"
-    const val MULTIPART_FORM_DATA = "multipart/form-data"
     const val MAXIMAL_SIZE = 1000000
     const val PASSWORD_LENGTH = 8
     const val DB_NAME = "nutrilog-db"

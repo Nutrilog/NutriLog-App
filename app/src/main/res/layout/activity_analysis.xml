@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.ui.analysis.AnalysisActivity">
+    tools:context=".ui.screen.analysis.AnalysisActivity">
 
     <include
         android:id="@+id/toolbar"
@@ -75,7 +75,7 @@
 
             </FrameLayout>
 
-            <com.nutrilog.app.presentation.ui.base.component.input.InputLayout
+            <com.nutrilog.app.ui.component.input.InputLayout
                 android:id="@+id/layout_food_serving"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -97,7 +97,7 @@
                     android:textAppearance="@style/Text.Body1"
                     android:inputType="numberDecimal" />
 
-            </com.nutrilog.app.presentation.ui.base.component.input.InputLayout>
+            </com.nutrilog.app.ui.component.input.InputLayout>
 
             <Button
                 android:id="@+id/button_add"

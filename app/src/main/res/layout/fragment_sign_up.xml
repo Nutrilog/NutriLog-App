@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.ui.auth.SignUpFragment">
+    tools:context=".ui.screen.auth.SignUpFragment">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -41,7 +41,7 @@
                 app:layout_constraintEnd_toEndOf="@id/tv_signup_title"
                 app:layout_constraintStart_toStartOf="@id/tv_signup_title" />
 
-            <com.nutrilog.app.presentation.ui.base.component.input.InputLayout
+            <com.nutrilog.app.ui.component.input.InputLayout
                 android:id="@+id/layout_register_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -55,14 +55,14 @@
                 app:layout_constraintEnd_toEndOf="@id/tv_signup_subtitle"
                 app:layout_constraintStart_toStartOf="@id/tv_signup_subtitle">
 
-                <com.nutrilog.app.presentation.ui.base.component.input.FullNameInputEditText
+                <com.nutrilog.app.ui.component.input.FullNameInputEditText
                     android:id="@+id/ed_register_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
-            </com.nutrilog.app.presentation.ui.base.component.input.InputLayout>
+            </com.nutrilog.app.ui.component.input.InputLayout>
 
-            <com.nutrilog.app.presentation.ui.base.component.input.InputLayout
+            <com.nutrilog.app.ui.component.input.InputLayout
                 android:id="@+id/layout_register_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -76,14 +76,14 @@
                 app:layout_constraintEnd_toEndOf="@id/layout_register_name"
                 app:layout_constraintStart_toStartOf="@id/layout_register_name">
 
-                <com.nutrilog.app.presentation.ui.base.component.input.EmailInputEditText
+                <com.nutrilog.app.ui.component.input.EmailInputEditText
                     android:id="@+id/ed_register_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
-            </com.nutrilog.app.presentation.ui.base.component.input.InputLayout>
+            </com.nutrilog.app.ui.component.input.InputLayout>
 
-            <com.nutrilog.app.presentation.ui.base.component.input.InputLayout
+            <com.nutrilog.app.ui.component.input.InputLayout
                 android:id="@+id/layout_register_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -98,15 +98,15 @@
                 app:layout_constraintEnd_toEndOf="@id/layout_register_email"
                 app:layout_constraintStart_toStartOf="@id/layout_register_email">
 
-                <com.nutrilog.app.presentation.ui.base.component.input.PasswordInputEditText
+                <com.nutrilog.app.ui.component.input.PasswordInputEditText
                     android:id="@+id/ed_register_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/Text.Body1" />
 
-            </com.nutrilog.app.presentation.ui.base.component.input.InputLayout>
+            </com.nutrilog.app.ui.component.input.InputLayout>
 
-            <com.nutrilog.app.presentation.ui.base.component.input.InputLayout
+            <com.nutrilog.app.ui.component.input.InputLayout
                 android:id="@+id/layout_register_gender"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -130,9 +130,9 @@
                     style="@style/Text.Body1"
                     app:simpleItems="@array/Gender" />
 
-            </com.nutrilog.app.presentation.ui.base.component.input.InputLayout>
+            </com.nutrilog.app.ui.component.input.InputLayout>
 
-            <com.nutrilog.app.presentation.ui.base.component.input.InputLayout
+            <com.nutrilog.app.ui.component.input.InputLayout
                 android:id="@+id/layout_register_date_birth"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -153,7 +153,7 @@
                     android:inputType="date"
                     style="@style/Text.Body1" />
 
-            </com.nutrilog.app.presentation.ui.base.component.input.InputLayout>
+            </com.nutrilog.app.ui.component.input.InputLayout>
 
             <Button
                 android:id="@+id/btn_signup"

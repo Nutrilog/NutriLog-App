@@ -1,7 +1,7 @@
 package com.nutrilog.app.utils.helpers
 
 import android.util.Patterns
-import com.nutrilog.app.domain.model.Gender
+import com.nutrilog.app.core.domain.model.Gender
 import com.nutrilog.app.utils.constant.AppConstant
 import kotlin.math.pow
 import kotlin.math.roundToInt

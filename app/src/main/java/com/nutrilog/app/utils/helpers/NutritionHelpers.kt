@@ -5,10 +5,10 @@ import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.RelativeSizeSpan
 import com.nutrilog.app.R
-import com.nutrilog.app.domain.model.ActiveLevel
-import com.nutrilog.app.domain.model.ActivityFactor
-import com.nutrilog.app.domain.model.Nutrition
-import com.nutrilog.app.domain.model.NutritionOption
+import com.nutrilog.app.core.domain.model.ActiveLevel
+import com.nutrilog.app.core.domain.model.ActivityFactor
+import com.nutrilog.app.core.domain.model.Nutrition
+import com.nutrilog.app.core.domain.model.NutritionOption
 
 fun convertListToNutritionLevel(list: List<Nutrition>): Map<NutritionOption, Double> {
     return NutritionOption.entries.associateWith { option ->
@@ -54,17 +54,6 @@ fun formatNutritionAmount(
     spannableString.setSpan(RelativeSizeSpan(0.7f), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
 
     return spannableString
-}
-
-fun convertListToNutritionLevelList(list: List<Nutrition>): Map<NutritionOption, List<Double>> {
-    return NutritionOption.entries.associateWith { option ->
-        when (option) {
-            NutritionOption.CARBOHYDRATE -> list.map { it.carbohydrate.toDouble() }
-            NutritionOption.PROTEIN -> list.map { it.proteins.toDouble() }
-            NutritionOption.FAT -> list.map { it.fat.toDouble() }
-            NutritionOption.CALORIES -> list.map { it.calories.toDouble() }
-        }
-    }
 }
 
 fun getBMR(

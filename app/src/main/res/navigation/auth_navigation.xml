@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/signInFragment"
-        android:name="com.nutrilog.app.presentation.ui.auth.SignInFragment"
+        android:name="com.nutrilog.app.ui.screen.auth.SignInFragment"
         android:label="fragment_sign_in"
         tools:layout="@layout/fragment_sign_in" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
-        android:name="com.nutrilog.app.presentation.ui.auth.SignUpFragment"
+        android:name="com.nutrilog.app.ui.screen.auth.SignUpFragment"
         android:label="fragment_sign_up"
         tools:layout="@layout/fragment_sign_up" />
 </navigation>

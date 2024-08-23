@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content">
 
 
-                <com.nutrilog.app.presentation.ui.base.component.input.InputLayout
+                <com.nutrilog.app.ui.component.input.InputLayout
                     android:id="@+id/layout_height"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -58,9 +58,9 @@
                         android:textAppearance="@style/Text.Body1"
                         android:inputType="numberDecimal" />
 
-                </com.nutrilog.app.presentation.ui.base.component.input.InputLayout>
+                </com.nutrilog.app.ui.component.input.InputLayout>
 
-                <com.nutrilog.app.presentation.ui.base.component.input.InputLayout
+                <com.nutrilog.app.ui.component.input.InputLayout
                     android:id="@+id/layout_weight"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -80,7 +80,7 @@
                         android:textAppearance="@style/Text.Body1"
                         android:inputType="numberDecimal" />
 
-                </com.nutrilog.app.presentation.ui.base.component.input.InputLayout>
+                </com.nutrilog.app.ui.component.input.InputLayout>
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

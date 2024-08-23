@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.google.android.material.snackbar.Snackbar
-import com.nutrilog.app.presentation.ui.base.component.snackbar.CustomSnackbar
+import com.nutrilog.app.ui.component.snackbar.CustomSnackbar
 import com.skydoves.powerspinner.PowerSpinnerView
 
 fun View.show() {
