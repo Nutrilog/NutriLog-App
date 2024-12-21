@@ -20,7 +20,7 @@ android {
         versionName = "1.0.6"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField("String", "API_BASE_URL", "\"https://capstone-ijhyluyd4q-et.a.run.app/\"")
+        buildConfigField("String", "API_BASE_URL", "\"https://nutrilog-api.vercel.app/\"")
         buildConfigField(
             "String",
             "REPO_URL",

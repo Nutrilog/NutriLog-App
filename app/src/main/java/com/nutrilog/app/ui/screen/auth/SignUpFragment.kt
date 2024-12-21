@@ -29,6 +29,7 @@ import com.nutrilog.app.utils.helpers.observe
 import com.nutrilog.app.utils.helpers.show
 import com.nutrilog.app.utils.helpers.showSnackBar
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import timber.log.Timber
 import java.util.Calendar
 import java.util.Date
 
@@ -105,7 +106,13 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>() {
         val name = binding.edRegisterName.text.toString()
         val email = binding.edRegisterEmail.text.toString()
         val password = binding.edRegisterPassword.text.toString()
-        val gender = binding.edRegisterGender.text.toString()
+        val tempGender = binding.edRegisterGender.text.toString()
+        val gender = when {
+            tempGender == "Laki-laki" -> "male"
+            tempGender == "Perempuan" -> "female"
+            else -> tempGender
+        }
+        Timber.e("Gender: $gender")
         val dateOfBirth = binding.edRegisterDateBirth.text.toString()
 
         when {

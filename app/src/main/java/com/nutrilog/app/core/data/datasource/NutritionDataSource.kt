@@ -14,6 +14,7 @@ import com.nutrilog.app.utils.helpers.convertListToNutritionLevel
 import com.nutrilog.app.core.utils.createResponse
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import timber.log.Timber
 import java.util.Date
 
 class NutritionDataSource(
@@ -83,7 +84,7 @@ class NutritionDataSource(
                     emit(ResultState.Error(response.message))
                     return@flow
                 }
-
+                Timber.tag("Respon Data").e(response.data.toString())
                 database.getNutritionDao().insertNutrition(response.data)
                 emit(ResultState.Success(response.message))
             } catch (e: Exception) {

@@ -33,6 +33,7 @@ import com.nutrilog.app.utils.helpers.uriToFile
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import timber.log.Timber
 import java.io.File
 import java.util.Date
 import kotlin.coroutines.resume

@@ -12,7 +12,7 @@ import java.util.Date
 import java.util.Locale
 
 class DateAdapter : JsonDeserializer<Date>, JsonSerializer<Date> {
-    private val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US)
+    private val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSSXXX", Locale.US)
 
     override fun deserialize(
         json: JsonElement,

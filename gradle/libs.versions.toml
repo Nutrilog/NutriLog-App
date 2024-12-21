@@ -1,5 +1,5 @@
 [versions]
-aachartcoreKotlin = "7.2.1"
+aachartcoreKotlin = "7.2.3"
 agp = "8.4.1"
 apkupdaterLibrary = "v2.1.0"
 chipNavigationBar = "1.4.0"
