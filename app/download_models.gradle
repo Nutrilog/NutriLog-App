@@ -1,11 +1,11 @@
 task downloadModelFile(type: Download) {
-    src "https://storage.googleapis.com/model_nutrilog/model_nutrilog_best/food_classifier_model.tflite"
+    src "https://github.com/Nutrilog/NutriLog-Model/releases/download/v1.0.0/food_classifier_model.tflite"
     dest project.ext.ML_DIR + "/food_classifier_model.tflite"
     overwrite false
 }
 
 task downloadLabelFile(type: Download) {
-    src "https://storage.googleapis.com/model_nutrilog/labels.txt"
+    src "https://github.com/Nutrilog/NutriLog-Model/releases/download/v1.0.0/labels.txt"
     dest project.ext.ASSETS_DIR + "/labels.txt"
     overwrite false
 }
